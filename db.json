@@ -1,0 +1,91 @@
+{
+  "roles_examples": [
+    {
+      "id": 1,
+      "name": "Game Master",
+      "description": "They decide what games to play and help mediate the game(s)."
+    },
+    {
+      "id": 2,
+      "name": "Party Host",
+      "description": "That's the host. A no-brainer."
+    },
+    {
+      "id": 3,
+      "name": "Memory Manager",
+      "description": "They capture images of the party."
+    },
+    {
+      "id": 4,
+      "name": "Story Teller",
+      "description": "They are the entertainer of the party."
+    },
+    {
+      "id": 5,
+      "name": "And many more...",
+      "description": "Create your own  roles or choose from our assortment of roles!"
+    }
+  ],
+  "themes_examples": [
+    {
+      "id": 0,
+      "theme": "Default",
+      "gm": "Game Master",
+      "host": "The Host",
+      "memory": "Memory Manager",
+      "story": "The Storyteller",
+      "color": "#cddc39"
+    },
+    {
+      "id": 1,
+      "theme": "magic",
+      "gm": "The Seeker",
+      "host": "Headmaster",
+      "memory": "Wise-ard",
+      "story": "Hagrid",
+      "color": "purple"
+    },
+    {
+      "id": 2,
+      "theme": "anime",
+      "gm": "Editor",
+      "host": "Shonen Jump",
+      "memory": "Animation Studio",
+      "story": "Mangaka",
+      "color": "yellow"
+    },
+    {
+      "id": 3,
+      "theme": "pokemon",
+      "gm": "Team Rocket",
+      "host": "Professor Oak",
+      "memory": "Pokedex",
+      "story": "Jigglypuff",
+      "color": "red"
+    },
+    {
+      "id": 4,
+      "theme": "Sherlock",
+      "gm": "Dr Watson",
+      "host": "Lestrade",
+      "memory": "Mr Holmes",
+      "story": "Sir Arthur Conan Doyle",
+      "color": "brown"
+    },
+    {
+      "id": 5,
+      "theme": "Or create your own!",
+      "gm": "---",
+      "host": "---",
+      "memory": "---",
+      "story": "---",
+      "color": "white"
+    }
+  ],
+  "example_party": {
+    "host": "Karen",
+    "code": "partyy",
+    "joined": 7,
+    "theme": "magic"
+  }
+}
