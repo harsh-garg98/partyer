@@ -20,7 +20,7 @@ nav {
   cursor: pointer;
   max-width: 20%;
   font-size: 3.2em;
-  padding-right: 2%;
+  padding-left: 2%;
 }
 
 .card-example-container {
@@ -161,4 +161,65 @@ nav {
 }
 .create-party-code.open {
   height: 50px;
+}
+
+.join-party-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-join-modal {
+  background-color: black;
+  width: 80%;
+  padding-bottom: 10px;
+}
+
+.create-party-modal {
+  position: fixed;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  background: rgb(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-create-modal {
+  background-color: black;
+  width: 80%;
+  padding-bottom: 10px;
+}
+
+.no-side-nav {
+  height: 0;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+}
+
+.side-nav-container {
+  position: fixed;
+  background: rgb(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.side-nav {
+  height: 100vh;
+  width: 0;
+  overflow: hidden;
+  background-color: lightblue;
+  transition: width 1s ease;
+}
+
+.side-nav.show-nav {
+  width: 20vw;
 }

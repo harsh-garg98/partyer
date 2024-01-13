@@ -3,6 +3,9 @@ import "./App.css";
 import { FilledCardExample } from "./components/FilledCardExample";
 import axios from "axios";
 import { JoinPartyModal } from "./components/JoinPartyModal";
+import { JoinOrCreatePartyTray } from "./components/JoinOrCreatePartyTray";
+import { CreatePartyModal } from "./components/CreatePartyModal";
+import { SideNavBar } from "./components/SideNavBar";
 
 function App() {
   // ideas
@@ -15,6 +18,10 @@ function App() {
   const [partyCodeParagraph, setPartyCodeParagraph] = useState("");
   const [themedExamples, setThemedExamples] = useState();
   const [currentTheme, setCurrentTheme] = useState();
+  const [showJoinPartyModal, setShowJoinPartyModal] = useState(false);
+  const [showCreatePartyModal, setShowCreatePartyModal] = useState(false);
+  const [createOrJoin, setCreateOrJoin] = useState();
+  const [showSideNav, setShowSideNav] = useState(false);
 
   const fetch_examples_data = async () => {
     const response = await axios.get("http://localhost:3000/roles_examples");
@@ -29,10 +36,25 @@ function App() {
     setCurrentTheme(response.data.find((example) => example.id === 0));
   };
 
+  const handleSideNav = () => {
+    console.log("Click!");
+    console.log(showSideNav);
+    setShowSideNav(!showSideNav);
+    console.log(showSideNav);
+
+    const sideNav = document.getElementsByClassName("side-nav");
+    console.log(sideNav[0]);
+    console.log("Event");
+  };
+
   const open_close_tray = (id) => {
-    setTrayOpen(!trayOpen);
-    let paragraph = examplesData?.find((example) => example.id === id);
-    setExampleParagraph(paragraph.description);
+    if (trayOpen === false) {
+      setTrayOpen(!trayOpen);
+      let paragraph = examplesData?.find((example) => example.id === id);
+      setExampleParagraph(paragraph.description);
+    } else {
+      setTrayOpen(!trayOpen);
+    }
   };
 
   const open_close_code_tray = (id) => {
@@ -41,9 +63,18 @@ function App() {
         id === 1 ? "Create a 6-digit party code" : "Enter a 6-digit party code";
       setPartyCodeParagraph(paragraph);
       setPartyCodeTray(!partyCodeTray);
+      setCreateOrJoin(id);
     } else {
       setPartyCodeTray(!partyCodeTray);
     }
+  };
+
+  const handleJoinParty = () => {
+    setShowJoinPartyModal(!showJoinPartyModal);
+  };
+
+  const handleCreateParty = () => {
+    setShowCreatePartyModal(!showCreatePartyModal);
   };
 
   const getSelectedTheme = (id) => {
@@ -64,11 +95,15 @@ function App() {
   return (
     <>
       <nav>
+        <span className="material-symbols-outlined" onClick={handleSideNav}>
+          menu
+        </span>
         <h1 className="title">Hello partyers!</h1>
-        <span className="material-symbols-outlined">menu</span>
       </nav>
 
       <main>
+        <SideNavBar showSideNav={showSideNav} />
+
         <div className="instructions">
           <h2>Host a party or attend a friend's!</h2>
           <div className="instructions-examples-list party-code-list">
@@ -86,16 +121,11 @@ function App() {
             </span>
           </div>
         </div>
-        <div className={`create-party-code ${partyCodeTray ? "open" : ""}`}>
-          <span style={{ marginRight: "5px", fontSize: "1.25em" }}>
-            {partyCodeParagraph}
-          </span>
-          <textarea
-            style={{ marginLeft: "5px", marginRight: "5px" }}
-          ></textarea>
-          <button style={{ marginLeft: "5px" }}>Submit</button>
-        </div>
-
+        <JoinOrCreatePartyTray
+          partyCodeTray={partyCodeTray}
+          partyCodeParagraph={partyCodeParagraph}
+          handleClick={createOrJoin === 1 ? handleCreateParty : handleJoinParty}
+        />
         <div className="instructions">
           <h2>Pick a role (Or create your own!)</h2>
           <div className="instructions-examples-list roles-list">
@@ -156,10 +186,13 @@ function App() {
           <FilledCardExample
             role={currentTheme?.story}
             image={"../public/party4.jpeg"}
-            name="Ching Chong"
+            name="Yan Naing Lee"
           />
         </div>
-        <JoinPartyModal />
+        {showJoinPartyModal && <JoinPartyModal handleClick={handleJoinParty} />}
+        {showCreatePartyModal && (
+          <CreatePartyModal handleClick={handleCreateParty} />
+        )}
       </main>
     </>
   );
